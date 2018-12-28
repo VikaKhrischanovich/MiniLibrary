@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -19,9 +20,6 @@ public class BookEntity {
     private String name;
 
     @NotNull
-    private Long authorId;
-
-    @NotNull
     private String feedback;
 
     @NotNull
@@ -32,4 +30,11 @@ public class BookEntity {
 
     @NotNull
     private int year;
+
+    @NotNull
+    @ManyToMany
+    @JoinTable(name = "BOOK_AUTHOR",
+            joinColumns = @JoinColumn(name = "book_id"),
+            inverseJoinColumns = @JoinColumn(name = "author_id"))
+    private List<AuthorEntity> authors;
 }
