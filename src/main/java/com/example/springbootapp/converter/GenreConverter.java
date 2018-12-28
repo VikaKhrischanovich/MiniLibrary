@@ -6,7 +6,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 @Service
-public class GenreConverter implements DtoDboConverter<GenreDto, GenreEntity> {
+public class GenreConverter implements DtoEntityConverter<GenreDto, GenreEntity> {
     @Override
     public GenreDto convertToDto(final GenreEntity dbo) {
         final GenreDto genreDto = new GenreDto();
@@ -15,7 +15,7 @@ public class GenreConverter implements DtoDboConverter<GenreDto, GenreEntity> {
     }
 
     @Override
-    public GenreEntity convertToDbo(final GenreDto dto) {
+    public GenreEntity convertToEntity(final GenreDto dto) {
         final GenreEntity genreDbo = new GenreEntity();
         BeanUtils.copyProperties(dto, genreDbo);
         return genreDbo;

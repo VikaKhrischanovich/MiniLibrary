@@ -1,6 +1,7 @@
 package com.example.springbootapp.controller;
 
 import com.example.springbootapp.dto.AuthorDto;
+import com.example.springbootapp.enumeration.SORT_TYPE;
 import com.example.springbootapp.service.AuthorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +25,17 @@ public class AuthorController {
     }
 
     @GetMapping("/listAuthors")
-    public List<AuthorDto> getAllAuthors() {
-        return authorService.getAuthorsList();
+    public List<AuthorDto> getAllAuthors(final @RequestParam(name = "sortType", required = false) String sortTypeParam) {
+        if (sortTypeParam == null) {
+            return authorService.getAuthorsList();
+        } else {
+            SORT_TYPE sortType = SORT_TYPE.valueOf(sortTypeParam.toUpperCase());
+            return authorService.getAuthorsList(sortType);
+        }
+    }
+
+    @GetMapping("/byLastName")
+    public List<AuthorDto> getAuthorByLastName(final @RequestParam String lastName) {
+        return authorService.getAuthorByLastName(lastName);
     }
 }

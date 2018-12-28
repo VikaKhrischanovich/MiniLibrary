@@ -21,7 +21,7 @@ public class GenreService {
     }
 
     public void createGenre(final GenreDto genreDto) {
-        genreRepository.save(genreConverter.convertToDbo(genreDto));
+        genreRepository.save(genreConverter.convertToEntity(genreDto));
     }
 
     public List<GenreDto> getGenresList() {
