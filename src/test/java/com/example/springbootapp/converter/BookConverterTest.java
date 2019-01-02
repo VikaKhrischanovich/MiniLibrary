@@ -3,13 +3,18 @@ package com.example.springbootapp.converter;
 import com.example.springbootapp.MockDataBook;
 import com.example.springbootapp.dto.BookDto;
 import com.example.springbootapp.entity.BookEntity;
+import com.example.springbootapp.repository.GenreRepository;
 import org.junit.Test;
+import org.mockito.Mock;
 
 import static org.junit.Assert.*;
 
 public class BookConverterTest {
 
-    private final BookConverter bookConverter = new BookConverter();
+    @Mock
+    private GenreConverter genreConverter;
+
+    private final BookConverter bookConverter = new BookConverter(genreConverter);
 
     @Test
     public void convertToDto(){

@@ -1,6 +1,7 @@
 package com.example.springbootapp.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -11,9 +12,10 @@ import java.util.List;
 
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
-@Table(name = "GENRE")
-public class GenreEntity {
+@Table(name = "category")
+public class CategoryEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -21,14 +23,7 @@ public class GenreEntity {
     @NotNull
     private String name;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "category_id")
+    @OneToMany(mappedBy = "category")
     @JsonIgnore
-    private CategoryEntity category;
-
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "book_genre",
-            joinColumns = @JoinColumn(name = "genre_id"),
-            inverseJoinColumns = @JoinColumn(name = "book_id"))
-    private List<BookEntity> books;
+    private List<GenreEntity> genres;
 }
