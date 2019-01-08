@@ -3,6 +3,8 @@ package com.example.springbootapp.dto;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @NoArgsConstructor
 public class BookDto {
@@ -13,4 +15,5 @@ public class BookDto {
     private Double rating;
     private String description;
     private int year;
+    private List<String> genres;
 }

@@ -3,13 +3,23 @@ package com.example.springbootapp.converter;
 import com.example.springbootapp.MockDataGenre;
 import com.example.springbootapp.dto.GenreDto;
 import com.example.springbootapp.entity.GenreEntity;
+import com.example.springbootapp.repository.CategoryRepository;
+import com.example.springbootapp.repository.GenreRepository;
 import org.junit.Test;
+import org.mockito.Mock;
+import org.springframework.boot.test.mock.mockito.MockBean;
 
 import static org.junit.Assert.*;
 
 public class GenreConverterTest {
 
-    private final GenreConverter genreConverter = new GenreConverter();
+    @Mock
+    private CategoryRepository categoryRepository;
+
+    @Mock
+    private GenreRepository genreRepository;
+
+    private final GenreConverter genreConverter = new GenreConverter(categoryRepository, genreRepository);
 
     @Test
     public void convertToDto(){
